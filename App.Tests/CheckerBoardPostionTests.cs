@@ -1,4 +1,5 @@
-﻿using ChessExample;
+﻿using System.Globalization;
+using ChessExample;
 using Xunit;
 
 namespace App.Tests;
@@ -56,7 +57,7 @@ public class CheckerBoardPositionTests
     [InlineData("7B")]
     public void Parse_NotExistedPosition_ThrowsFormatException(string s)
     {
-        Assert.Throws<FormatException>(() => CheckerBoardPosition.Parse(s, null));
+        Assert.Throws<FormatException>(() => CheckerBoardPosition.Parse(s, CultureInfo.InvariantCulture));
     }
 
     [Theory]
@@ -66,7 +67,7 @@ public class CheckerBoardPositionTests
     [InlineData("C3")]
     public void Parse_ExistedPosition_ParsedCorrect(string s)
     {
-        CheckerBoardPosition pos = CheckerBoardPosition.Parse(s, null);
+        CheckerBoardPosition pos = CheckerBoardPosition.Parse(s, CultureInfo.InvariantCulture);
         
         Assert.Equal(s, pos.ToString());
     }
@@ -81,7 +82,7 @@ public class CheckerBoardPositionTests
     [InlineData("7A")]
     public void TryParse_NotExistedPosition_ReturnFalse(string s)
     {
-        Assert.False(CheckerBoardPosition.TryParse(s, null, out _));
+        Assert.False(CheckerBoardPosition.TryParse(s, CultureInfo.InvariantCulture, out _));
     }
 
     [Theory]
@@ -91,6 +92,6 @@ public class CheckerBoardPositionTests
     [InlineData("C8")]
     public void TryParse_ExistedPosition_ReturnsTrue(string s)
     {
-        Assert.True(CheckerBoardPosition.TryParse(s, null, out _));
+        Assert.True(CheckerBoardPosition.TryParse(s, CultureInfo.InvariantCulture, out _));
     }
 }
