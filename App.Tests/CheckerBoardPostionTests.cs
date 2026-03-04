@@ -6,8 +6,8 @@ namespace App.Tests;
 public class CheckerBoardPositionTests
 {
     [Theory]
-    [InlineData((byte)1, (byte)9)]
-    [InlineData((byte)9, (byte)1)]
+    [InlineData(1, 9)]
+    [InlineData(9, 1)]
     public void CreatePostion_NotAllowedData_ThrowsArgumentOutOfRangeException(byte x, byte y)
     {
         Assert.Throws<ArgumentOutOfRangeException>(
@@ -15,9 +15,9 @@ public class CheckerBoardPositionTests
     }
 
     [Theory]
-    [InlineData((byte)1, (byte)1)]
-    [InlineData((byte)2, (byte)1)]
-    [InlineData((byte)5, (byte)4)]
+    [InlineData(1, 1)]
+    [InlineData(2, 1)]
+    [InlineData(5, 4)]
     public void CreatePosition_AllowedData_Success(byte x, byte y)
     {
         CheckerBoardPosition pos =  new CheckerBoardPosition(x, y);
@@ -27,9 +27,9 @@ public class CheckerBoardPositionTests
     }
     
     [Theory]
-    [InlineData((byte)1, 'A')]
-    [InlineData((byte)2, 'B')]
-    [InlineData((byte)3, 'C')]
+    [InlineData(1, 'A')]
+    [InlineData(2, 'B')]
+    [InlineData(3, 'C')]
     public void XLetter_ReturnsCorrectLetter(byte x, char letter)
     {
         CheckerBoardPosition pos =  new CheckerBoardPosition(x, 5);
@@ -38,8 +38,8 @@ public class CheckerBoardPositionTests
     }
 
     [Theory]
-    [InlineData((byte)1, (byte)1)]
-    [InlineData((byte)2, (byte)5)]
+    [InlineData(1, 1)]
+    [InlineData(2, 5)]
     public void ToString_ReturnsCorrectChessPosition(byte x, byte y)
     {
         CheckerBoardPosition pos =  new CheckerBoardPosition(x, y);
