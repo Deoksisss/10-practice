@@ -39,13 +39,15 @@ public class CheckerBoardPositionTests
     }
 
     [Theory]
-    [InlineData(1, 1)]
-    [InlineData(2, 5)]
-    public void ToString_ReturnsCorrectChessPosition(byte x, byte y)
+    [InlineData("A1")]
+    [InlineData("B5")]
+    [InlineData("H8")]
+    public void Parse_ThenToString_ReturnsOriginalString(string input)
     {
-        CheckerBoardPosition pos =  new CheckerBoardPosition(x, y);
-        
-        Assert.Equal($"{pos.XLetter}{y}", pos.ToString());
+        CheckerBoardPosition pos = CheckerBoardPosition.Parse(input, CultureInfo.InvariantCulture);
+        string result = pos.ToString();
+
+        Assert.Equal(input, result);
     }
 
     [Theory]
@@ -56,7 +58,7 @@ public class CheckerBoardPositionTests
     [InlineData("BA")]
     [InlineData("BABA")]
     [InlineData("7B")]
-    public void Parse_NotExistedPosition_ThrowsFormatException(string s)
+    public void Parse_NonExistentPosition_ThrowsFormatException(string s)
     {
         Assert.Throws<FormatException>(() => CheckerBoardPosition.Parse(s, CultureInfo.InvariantCulture));
     }
