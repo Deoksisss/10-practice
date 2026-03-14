@@ -68,7 +68,7 @@ public class CheckerBoardPositionTests
     [InlineData("H8")]
     [InlineData("A1")]
     [InlineData("C3")]
-    public void Parse_ExistedPosition_ParsedCorrect(string s)
+    public void Parse_ExistentPosition_ParsedCorrect(string s)
     {
         CheckerBoardPosition pos = CheckerBoardPosition.Parse(s, CultureInfo.InvariantCulture);
         
@@ -84,7 +84,7 @@ public class CheckerBoardPositionTests
     [InlineData("BABA")]
     [InlineData("77B")]
     [InlineData("7A")]
-    public void TryParse_NotExistedPosition_ReturnFalse(string s)
+    public void TryParse_NonExistentPosition_ReturnFalse(string s)
     {
         Assert.False(CheckerBoardPosition.TryParse(s, CultureInfo.InvariantCulture, out _));
     }
@@ -94,7 +94,7 @@ public class CheckerBoardPositionTests
     [InlineData("G8")]
     [InlineData("F1")]
     [InlineData("C8")]
-    public void TryParse_ExistedPosition_ReturnsTrue(string s)
+    public void TryParse_ExistentPosition_ReturnsTrue(string s)
     {
         Assert.True(CheckerBoardPosition.TryParse(s, CultureInfo.InvariantCulture, out _));
     }
